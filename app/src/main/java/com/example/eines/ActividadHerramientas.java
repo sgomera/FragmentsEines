@@ -1,15 +1,27 @@
 package com.example.eines;
 
+import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.Fragment;
+import android.content.Context;
+import android.graphics.Camera;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 public class ActividadHerramientas extends AppCompatActivity implements ComunicaMenu, ManejaFlashCamara{
 
-    Fragment[] misFragmentos;
+    private Fragment[] misFragmentos;
+    private CameraManager miCamara;
+    private String idCamara;
+
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +40,12 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
         // Hem de passar la informació del bundle al mètode menú de la interfase
         menu(extras.getInt("BOTONPULSADO"));
 
-
+        miCamara = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
+        try {
+            idCamara = miCamara.getCameraIdList()[0];
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
     }
 
    //Ara el que cal és
@@ -61,13 +78,25 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void enciendeApaga(boolean estadoFlash) {
         //per provar fàcilment, mostrem toasts enlloc d'encendre i apagar el flash:
-        if(estadoFlash){
-            Toast.makeText(this, "Flash desactivado", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Flash activado", Toast.LENGTH_SHORT).show();
+        try {
+            if(estadoFlash){
+                // Toast.makeText(this, "Flash desactivado", Toast.LENGTH_SHORT).show();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    miCamara.setTorchMode(idCamara, false);
+                }
+
+            } else {
+                //Toast.makeText(this, "Flash activado", Toast.LENGTH_SHORT).show();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    miCamara.setTorchMode(idCamara, true);
+                }
+            }
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
         }
     }
 }
