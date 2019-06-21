@@ -5,8 +5,9 @@ import android.app.FragmentTransaction;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
-public class ActividadHerramientas extends AppCompatActivity implements ComunicaMenu{
+public class ActividadHerramientas extends AppCompatActivity implements ComunicaMenu, ManejaFlashCamara{
 
     Fragment[] misFragmentos;
     @Override
@@ -58,5 +59,15 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
         miTransaccion.replace(R.id.herramientas, misFragmentos[queBoton]);
         miTransaccion.commit();
 
+    }
+
+    @Override
+    public void enciendeApaga(boolean estadoFlash) {
+        //per provar fàcilment, mostrem toasts enlloc d'encendre i apagar el flash:
+        if(estadoFlash){
+            Toast.makeText(this, "Flash desactivado", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Flash activado", Toast.LENGTH_SHORT).show();
+        }
     }
 }
