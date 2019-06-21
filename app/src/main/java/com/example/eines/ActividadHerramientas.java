@@ -28,12 +28,9 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
         menu(extras.getInt("BOTONPULSADO"));
 
 
-
-
-
     }
 
-   //. Ara el que cal és
+   //Ara el que cal és
     //carregar el fragment corresponent al botó que s'hagi premut pq es carregui la seva imatge a sota.
     //per a fer tot això necessitem la classe FragmentManager.
     //mètode getFragmentManager: Return the FragmentManager for interacting with fragments associated
@@ -48,6 +45,16 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
     public void menu(int queBoton) {
         FragmentManager miManejador = getFragmentManager();
         FragmentTransaction miTransaccion = miManejador.beginTransaction();
+
+        //aquí cal crear programàticament els fragments de menú amb botons il·luminats, i després
+        // fer un altre replace per al fragment del menú
+        Fragment menuIluminado = new Menu();
+        Bundle datos = new Bundle();
+        datos.putInt("BOTONPULSADO", queBoton);
+        menuIluminado.setArguments(datos); //li diuem al nou menu creat, quin botó ha d'ésser el que ha d'estar il·luminat.
+
+        miTransaccion.replace(R.id.menu, menuIluminado); //canviem el menu per el menuIluminado
+
         miTransaccion.replace(R.id.herramientas, misFragmentos[queBoton]);
         miTransaccion.commit();
 

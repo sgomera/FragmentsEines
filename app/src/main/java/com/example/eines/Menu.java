@@ -3,7 +3,7 @@ package com.example.eines;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +15,17 @@ import android.widget.ImageButton;
  * A simple {@link Fragment} subclass.
  */
 public class Menu extends Fragment {
-    //creem un array per emmagatzemar-hi els ID dels botons del menú:
+    //creem un array per emmagatzemar-hi els ID dels botons del menú, sense il·luminar:
     private final int[] BOTONESMENU = {R.id.linterna, R.id.musica, R.id.nivel};
+    //ara en creem un altre amb els botons il·luminats:
+    private final int[] BOTONESILUMINADOS = {R.drawable.linterna2, R.drawable.musica2, R.drawable.nivel2};
+
+    //per fer que els botons s'il·luminin, necessitem crear 4 fragments de menú diferents, pq el contingut
+    //dels fragments és immutable. Necessitem un menú amb cada botó il·luminat diferent.(això s'ha de crear
+    //programant desde l'activitat herramientas.
+    //a més, haurem de fer que l'activitat herramientas, li digui al a la classe fragment de menú
+    // en quin fragment es troba. Per tant, necessitem una variable per saber quin és el botó premut:
+    private int boton;
 
 
     public Menu() {
@@ -40,6 +49,15 @@ public class Menu extends Fragment {
         //ens retornarà la interfase que hem creat comunicaMenu
         View miMenu = inflater.inflate(R.layout.fragment_menu, container, false);
 
+
+        //inicialitzem boton a -1 pq sinó per defecte val 0 i s'il·luminaria el botó de la llanterna:
+        boton = -1;
+        //si no és la primera vegada que s'executa el menú i per tant no estàs a l'activitat principal,
+        //aleshores recull els arguments del bundle
+        if (getArguments() != null) {
+            boton = getArguments().getInt("BOTONPULSADO");
+        }
+
         //declarem variable botonMenu de tipus ImageButton per representar cadascun dels botons de
             //dins de miMenu
         ImageButton botonMenu;
@@ -47,6 +65,11 @@ public class Menu extends Fragment {
         // posar els 3 botons a l'escolta de l'event onClick, i averiguar en quin botó s'ha premut
         for (int i = 0; i < BOTONESMENU.length; i++) {
             botonMenu = (ImageButton) miMenu.findViewById(BOTONESMENU[i]);
+
+            if (boton == i){
+                botonMenu.setImageResource(BOTONESILUMINADOS[i]);
+
+            }
             final int queBoton = i; //és la variable que hem d'enviar a la interfase comunicaMenu
             botonMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
