@@ -12,36 +12,36 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/linterna"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:scaleType="centerInside"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+            app:layout_constraintEnd_toStartOf="@+id/musica"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/linterna" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/musica"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:scaleType="centerInside"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+            app:layout_constraintEnd_toStartOf="@+id/nivel"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintStart_toEndOf="@+id/linterna"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/musica" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/nivel"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintStart_toEndOf="@+id/musica"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/nivel" />
