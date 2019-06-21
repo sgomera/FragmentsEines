@@ -25,6 +25,9 @@ public class Menu extends Fragment {
 
 
     //this method returns a view with the argument layout instantiated.
+
+    //volem que, quan es generi el fragment de menú, el propi fragment, averigüi a quina activity
+    //ens trobem i a més es posi a l'escolta i averigüi en quin botó es clica.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,7 +55,9 @@ public class Menu extends Fragment {
                    // estaActividad.menu(queBoton); //estem utilitzant una variable de tipus "activity" (estaActividad)
                         //per cridar a un mètode (menu) que pertany a una interface que es diu ComunicaMenu, per
                         //tant hem de fer un casting per a que corresponguin els tipus.
-                    ((ComunicaMenu)estaActividad).menu(queBoton);
+                    ((ComunicaMenu)estaActividad).menu(queBoton); //aquest és el mètode de la interface
+                    //el que fa és rebre el botó que s'ha premut per poder-lo passar a la classe que
+                    //implenti aquest mètode.
                 }
             });
         }
