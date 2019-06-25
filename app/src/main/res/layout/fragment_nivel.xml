@@ -14,7 +14,7 @@
             android:id="@+id/linterna"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/flashlight_image"
+            android:contentDescription="@string/level_image"
             android:scaleType="centerInside"
             android:src="@drawable/nivel"
             app:layout_constraintBottom_toBottomOf="parent"
