@@ -15,7 +15,7 @@ import android.widget.ImageButton;
  */
 public class Menu extends Fragment {
     //creem un array per emmagatzemar-hi els ID dels botons del menú, sense il·luminar:
-    private final int[] BOTONESMENU = {R.id.linterna, R.id.musica, R.id.nivel};
+    private final int[] BOTONESMENU = {R.id.bot_linterna, R.id.bot_musica, R.id.nivel};
     //ara en creem un altre amb els botons il·luminats:
     private final int[] BOTONESILUMINADOS = {R.drawable.linterna2, R.drawable.musica2, R.drawable.nivel2};
 

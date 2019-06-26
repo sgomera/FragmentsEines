@@ -29,7 +29,7 @@ public class Linterna extends Fragment {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_linterna, container, false);
         View fragmento = inflater.inflate(R.layout.fragment_linterna, container, false);
-        botonCamara = (ImageView)fragmento.findViewById(R.id.linterna);
+        botonCamara = (ImageView)fragmento.findViewById(R.id.bot_linterna);
         //posar a l'escolta el botó imatge de la llanterna, per quan es cliqui:
         botonCamara.setOnClickListener(new View.OnClickListener() {
             @Override
